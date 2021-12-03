@@ -4,8 +4,7 @@
 from Generator.Functions import Clear, Align, IsInt
 from Generator.NameCreator import NameCreator
 
-#DATABASE_FILE = 'db/prenom.txt'
-DATABASE_FILE = 'db/wow.txt'
+DATABASE_FILE = 'db/prenom.txt'
 
 generator = NameCreator()
 generator.LoadFile(DATABASE_FILE)
@@ -30,6 +29,7 @@ if MODE == 1:
         names = generator.Generate(5)
         print(''.join(map(Align, names)))
 
+# Can be used to create its own database
 elif MODE == 2:
     f = open('db/newBDD.txt', 'a')
     userInput = ''

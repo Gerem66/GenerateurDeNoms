@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from Generator.Functions import Clear, IsInt
+from Generator.Functions import Clear, Align, IsInt
 from Generator.NameCreator import NameCreator
 
-DATABASE_FILE = 'db/prenom.txt'
+#DATABASE_FILE = 'db/prenom.txt'
+DATABASE_FILE = 'db/wow.txt'
 
 generator = NameCreator()
 generator.LoadFile(DATABASE_FILE)
@@ -19,16 +20,15 @@ generator.Calculate()
 #         generator.conditions = [ 'a*', '*i' ]
 #     Contain (h or b) and i:
 #         generator.conditions = [ 'h', 'b', '!i' ]
-generator.conditions = [ 'h', 'k', '!y' ]
+#generator.conditions = [ 'h', 'k', '!y' ]
 
 MODE = 1
 
 if MODE == 1:
     Clear()
     for _ in range(10):
-        def align(text): return text.ljust(20)
         names = generator.Generate(5)
-        print(''.join(map(align, names)))
+        print(''.join(map(Align, names)))
 
 elif MODE == 2:
     f = open('db/newBDD.txt', 'a')

@@ -3,6 +3,8 @@ import os
 def Clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def Align(text): return text.ljust(20)
+
 def IsInt(text):
     try: return int(text) == int(text)
     except: return False

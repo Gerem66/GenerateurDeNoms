@@ -21,29 +21,40 @@ generator.Calculate()
 #         generator.conditions = [ 'h', 'b', '!i' ]
 #generator.conditions = [ 'h', 'k', '!y' ]
 
-MODE = 1
+print('Select mode:\n\t1) Generate many names\n\t2) Add names to current personnal DB', end='\n\n')
+MODE = input('>> ')
 
-if MODE == 1:
+if MODE not in [ '1', '2' ]:
+    print('Err: Wrong choice')
+    exit()
+
+if MODE == '1':
     Clear()
     for _ in range(10):
         names = generator.Generate(5)
         print(''.join(map(Align, names)))
 
 # Can be used to create its own database
-elif MODE == 2:
+elif MODE == '2':
     f = open('db/newBDD.txt', 'a')
     userInput = ''
     while userInput != 'q':
-        names = generator.Generate(4, 7, 2)
+        namesLength = 8
+        namesPerRow = 4
+
+        names = generator.Generate(namesLength)
         Clear()
-        for i in range(len(names)):
-            print(str(i+1) + '-' + names[i], end='\t')
+
+        for i in range(namesLength):
+            name = Align(str(i + 1) + '-' + names[i])
+            endRow = '\n' if (i - namesPerRow + 1) % namesPerRow == 0 else ''
+            print(name, end=endRow)
 
         try:
             userInput = input('\n>> ')
 
             if userInput == '': continue
-            elif IsInt(userInput) and int(userInput) < 5 and int(userInput) > 0:
+            elif IsInt(userInput) and int(userInput) <= namesLength and int(userInput) > 0:
                 addName = names[int(userInput)-1]
                 print(addName)
                 f.write(addName + '\n')

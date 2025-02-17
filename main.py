@@ -31,7 +31,7 @@ if MODE not in [ '1', '2' ]:
 if MODE == '1':
     Clear()
     for _ in range(10):
-        names = generator.Generate(5)
+        names = generator.Generate(5, 4, 10)
         print(''.join(map(Align, names)))
 
 # Can be used to create its own database

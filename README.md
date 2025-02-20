@@ -9,6 +9,11 @@ Un générateur de pseudos intelligent pour créer des noms cohérents dans diff
 - Système d'apprentissage via une base de données personnalisée
 - Filtre de noms avec conditions (commence par, termine par, contient, ...)
 
+## 🎨 Démonstration
+
+![Démonstration](img/generator-demo.gif)
+
+
 ## 💻 Installation
 
 1. Clonez le dépôt :

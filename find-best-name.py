@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os, sys, random
+from time import sleep
 from Generator.Functions import Clear, Align, IsInt
 from Generator.NameCreator import NameCreator
 
@@ -42,11 +43,20 @@ while userInput != 'q':
 
     # Custom database mode
     if customMode:
+        # Load custom database
         if customGenerator is None:
             customGenerator = NameCreator()
             customGenerator.LoadFile(CUSTOM_DATABASE_FILE)
             customGenerator.Calculate()
         names = customGenerator.Generate(namesCount)
+
+        # Check if custom database is empty and switch back to random mode
+        if not names:
+            print('Custom database is empty.')
+            sleep(2)
+            customMode = False
+            customGenerator = None
+            continue
     else:
         generatorIndex = random.randint(0, len(databases) - 1)
         names = generators[databases[generatorIndex]].Generate(namesCount)
@@ -81,10 +91,12 @@ while userInput != 'q':
             continue
         elif userInput == 'm':
             customMode = not customMode
+            customGenerator = None
         elif IsInt(userInput) and int(userInput) <= namesCount and int(userInput) > 0:
             addName = names[int(userInput)-1]
             print(f'Adding name: {addName}')
             f.write(addName + '\n')
+            f.flush()
     except KeyboardInterrupt:
         userInput = 'q'
         print()

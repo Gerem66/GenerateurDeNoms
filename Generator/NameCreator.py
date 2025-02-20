@@ -54,6 +54,9 @@ class NameCreator:
         return None
 
     def Generate(self, number, minLength = 4, maxLength = 8):
+        if len(self.prenoms) == 0:
+            return []
+
         names = []
         while len(names) < number:
             name = self.GetRandomFromDict(self.proba_first)
